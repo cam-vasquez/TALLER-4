@@ -2,7 +2,7 @@
 
 Ejercicio: 
 
->Crear un procedimiento almacenado que se encargue de almacenar nuevas citas en la tabla CITA. El procedimiento tendrá 3 parámetros de entrada: id válido de una clínica (INT). id válido de un cliente (INT). fecha (VARCHAR 32) compatible con el formato DATETIME con el estilo: ‘dd/mm/yyyy hh:mm:ss:000’.
+> Crear un procedimiento almacenado que se encargue de almacenar nuevas citas en la tabla CITA. El procedimiento tendrá 3 parámetros de entrada: id válido de una clínica (INT). id válido de un cliente (INT). fecha (VARCHAR 32) compatible con el formato DATETIME con el estilo: ‘dd/mm/yyyy hh:mm:ss:000’.
 
 > Distintos clientes pueden realizar varias citas en una clínica específica, ya que cada clínica dispone de los servicios de varios médicos, además cada clínica cuenta con una serie de consultorios en donde podrán realizarse las consultas. Por lo tanto, para poder almacenar una cita, es necesario realizar dos validaciones generales: 
 ___
