@@ -1,10 +1,20 @@
 USE DB_CLINICA;
 GO
 
+
+---******************************************************************
+
+	--INTEGRANTES GRUPO 10:
+
+	--> Henry Eduardo Escobar Lima. #00033721
+	--> Alejandra Vanessa Serrano Córdova, #00100520
+	--> Fernanda Camila Vásquez Meléndez, # 00065221
+
+---******************************************************************
+
 /*   
 
 Crear un procedimiento almacenado que se encargue de almacenar nuevas citas en la tabla CITA. El procedimiento tendrá 3 parámetros de entrada: id válido de una clínica (INT). id válido de un cliente (INT). fecha (VARCHAR 32) compatible con el formato DATETIME con el estilo: ‘dd/mm/yyyy hh:mm:ss:000’.
-
 Distintos clientes pueden realizar varias citas en una clínica específica, ya que cada clínica dispone de los servicios de varios médicos, además cada clínica cuenta con una serie de consultorios en donde podrán realizarse las consultas. Por lo tanto, para poder almacenar una cita, es necesario realizar dos validaciones generales:
 
 1. El procedimiento almacenado debe verificar cuantas citas se han realizado en la clínica y hora especificadas en los parámetros de entrada, una vez realizada esta acción, el procedimiento debe definir si la clínica aún cuenta con más consultorios disponibles para poder registrar citas en la misma fecha y hora. Si la clínica no cuenta con consultorio disponible entonces el procedimiento almacenado imprimirá un error explicando la situación. Por otro lado, si existen consultorios disponibles, el procedimiento deberá realizar la segunda validación.*/
@@ -66,8 +76,6 @@ AS BEGIN
 	DECLARE @num_cita INT;	
 	SELECT @id_cita = i.id, @id_clinica = i.id_clinica, @id_cliente = i.id_cliente, @fecha = i.fecha FROM inserted i;
 	SELECT @num_cita = COUNT(ct.id) FROM CITA ct
-	INNER JOIN CLINICA cl
-		ON cl.id = ct.id_clinica
 	WHERE ct.id_clinica = @id_clinica AND ct.fecha = @fecha;
 
 	-- Validando num de consultorio
