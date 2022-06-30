@@ -16,13 +16,18 @@ Distintos clientes pueden realizar varias citas en una clínica específica, ya 
 2 - Validación de consultorios disponibles
 3 - Validación de médicos disponibles
 
-
-3 - 
 */
 
-
-
 SELECT * FROM CLINICA;
+GO
+
+
+-- * Num de citas por clinica
+SELECT cl.id, cl.nombre, COUNT(ct.id) 'num de citas'
+FROM CITA ct
+INNER JOIN CLINICA cl
+	ON cl.id = ct.id_clinica
+GROUP BY cl.id, cl.nombre;
 GO
 
 --*  Num de consultorios por clinica
@@ -30,14 +35,6 @@ SELECT cl.id 'Id Clinica', cl.nombre, COUNT(cl.id) 'Num de consultorio'
 FROM CLINICA cl
 INNER JOIN CONSULTORIO csl
 	ON cl.id = csl.id_clinica
-GROUP BY cl.id, cl.nombre;
-GO
-
--- * Num de citas por clinica
-SELECT cl.id, cl.nombre, COUNT(ct.id) 'num de citas'
-FROM CITA ct
-INNER JOIN CLINICA cl
-	ON cl.id = ct.id_clinica
 GROUP BY cl.id, cl.nombre;
 GO
 
@@ -82,6 +79,9 @@ EXEC VERIFYING_AVAILABILITY 1,3,'20-05-2022 09:00:00.000';
 GO
 
 DROP PROCEDURE VERIFYING_AVAILABILITY;
+
+
+
 -- 1.1.	Crear un procedimiento almacenado que permita registrar nuevas reservas
 --		Como argumentos se reciben: el la fecha de checkin y checkout, el id del cliente
 --		y el id de la habitacion.
