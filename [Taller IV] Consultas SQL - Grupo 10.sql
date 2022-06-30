@@ -29,7 +29,7 @@ INNER JOIN CLINICA cl
 	ON cl.id = ct.id_clinica
 GROUP BY cl.id, cl.nombre;
 GO
-
+-- sa
 --*  Num de consultorios por clinica
 SELECT cl.id 'Id Clinica', cl.nombre, COUNT(cl.id) 'Num de consultorio'
 FROM CLINICA cl
